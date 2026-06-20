@@ -1,6 +1,6 @@
 # Deadman Switch 🔐⏳
 
-A deadman switch program written in Solana, designed as an on-chain inheritance mechanism. Owner checks in periodically; miss the deadline long enough and the funds automatically distribute to whoever you've set as beneficiaries. Built with Anchor 1.0. Still in progress.
+A deadman switch program written in Solana, designed as an on-chain inheritance program. Owner checks in periodically; miss the deadline long enough and the funds automatically distribute to whoever you've set as beneficiaries. Built with Anchor 1.0. Still at work in progress.
 
 ---
 
@@ -41,17 +41,17 @@ A few things that aren't obvious from the table:
 
 ## Instructions
 
-| Instruction | Who | Notes |
-|---|---|---|
-| `initialize` | owner | creates the switch; optional initial deposit |
-| `check_in` | owner | resets the timer; works during grace |
-| `deposit` | anyone | top up before trigger |
-| `withdraw` | owner | active period only; preserves rent minimum |
-| `trigger` | anyone | after full expiry; pass beneficiaries as `remaining_accounts` in order |
-| `add_message` | owner | set or clear a note for beneficiaries |
-| `update_beneficiaries` | owner | full replacement; blocked after deadline |
-| `update_interval` | owner | blocked after deadline; can't shorten into an immediate trigger |
-| `cancel` | owner | closes PDA, returns everything; blocked after full expiry |
+| Instruction            | Who    | Notes                                                                  |
+| ---------------------- | ------ | ---------------------------------------------------------------------- |
+| `initialize`           | owner  | creates the switch; optional initial deposit                           |
+| `check_in`             | owner  | resets the timer; works during grace                                   |
+| `deposit`              | anyone | top up before trigger                                                  |
+| `withdraw`             | owner  | active period only; preserves rent minimum                             |
+| `trigger`              | anyone | after full expiry; pass beneficiaries as `remaining_accounts` in order |
+| `add_message`          | owner  | set or clear a note for beneficiaries                                  |
+| `update_beneficiaries` | owner  | full replacement; blocked after deadline                               |
+| `update_interval`      | owner  | blocked after deadline; can't shorten into an immediate trigger        |
+| `cancel`               | owner  | closes PDA, returns everything; blocked after full expiry              |
 
 Beneficiaries are stored as basis points summing to 10,000 (= 100%). Max 10. Last beneficiary absorbs any rounding dust at trigger time.
 
@@ -65,14 +65,6 @@ Requires Anchor 1.0+ and a Solana toolchain.
 anchor build
 cargo test
 anchor deploy
-```
-
----
-
-## Program ID
-
-```
-5BR3iY7HKjy2qdL7i99bQZPP9fxAzpGAVcihR7MHZWj6
 ```
 
 ---
